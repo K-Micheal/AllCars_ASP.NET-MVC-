@@ -1,0 +1,770 @@
+﻿@using AllCars.Models
+@{
+
+}
+
+<style>
+    div.rows {
+        /* width: 900px;*/
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 900px;
+    }
+
+    div.row {
+        width: 100%;
+        height: 245px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card-body{
+        float: left;
+    }
+
+    img.card-img {
+        width: 100%;
+    }
+
+    div.div_img {
+        width: 240px;
+        height: 170px;
+        float: left;
+    }
+
+    div.content_left {
+        float: left;
+        width: 300px;
+    }
+
+    div.content_right {
+        float: right;
+        width: 300px;
+    }
+
+    hr {
+        width: 900px;
+        color: black;
+    }
+
+    select.sort_cars {
+        float: right;
+    }
+
+    .sidebar1 {
+        background: #F17153;
+        /* For browsers that do not support gradients 
+        background: -webkit-linear-gradient(#F17153, #F58D63, #f1ab53);
+         For Safari 5.1 to 6.0 
+        background: -o-linear-gradient(#F17153, #F58D63, #f1ab53);
+         For Opera 11.1 to 12.0 
+        background: -moz-linear-gradient(#F17153, #F58D63, #f1ab53);
+         For Firefox 3.6 to 15 
+        background: linear-gradient(#F17153, #F58D63, #f1ab53);
+         Standard syntax 
+        padding: 0px;
+        min-height: 100%;*/
+        width: 100%;
+    }
+
+    .logo {
+        max-height: 130px;
+    }
+
+        .logo > img {
+            margin-top: 30px;
+            padding: 3px;
+            border: 3px solid white;
+            border-radius: 100%;
+        }
+
+    .list {
+        color: #fff;
+        list-style: none;
+        padding-left: 0px;
+    }
+
+        .list::first-line {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+       /* .list > li, h5 {
+            padding: 5px 0px 5px 40px;
+        }
+
+            .list > li:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-left: 5px solid white;
+                color: white;
+                font-weight: bolder;
+                padding-left: 35px;
+            }*/
+
+    .main-content {
+        text-align: center;
+    }
+    
+    .selectpicker {
+        display: block;
+        font-size: 16px;
+        font-family: sans-serif;
+        
+        color: #444;
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        
+       
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid #aaa;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+        border-radius: .5em;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        
+        background-color: #fff;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .65em auto, 100%;
+        width: 170px;
+    }
+
+        .selectpicker::-ms-expand {
+            display: none;
+        }
+
+        .selectpicker:hover {
+            border-color: #888;
+        }
+
+        .selectpicker:focus {
+            border-color: #aaa;
+            box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+            box-shadow: 0 0 0 3px;
+            color: #222;
+            outline: none;
+        }
+
+        .selectpicker option {
+            font-weight: normal;
+        }
+
+    *[dir="rtl"] .selectpicker, :root:lang(ar) .selectpicker, :root:lang(iw) .selectpicker {
+        background-position: left .7em top 50%, 0 0;
+        padding: .6em .8em .5em 1.4em;
+    }
+
+    .miniselectpicker {
+        display: block;
+        font-size: 16px;
+        font-family: sans-serif;
+        color: #444;
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid #aaa;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+        border-radius: .5em;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background-color: #fff;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .65em auto, 100%;
+        width: 70px;
+    }
+
+        .miniselectpicker::-ms-expand {
+            display: none;
+        }
+
+        /*.miniselectpicker:hover {
+            border-color: #888;
+        }
+*/
+      /*  .miniselectpicker:focus {
+            border-color: #aaa;
+            box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+            box-shadow: 0 0 0 3px;
+            color: #222;
+            outline: none;
+        }*/
+
+        .miniselectpicker option {
+            font-weight: normal;
+        }
+
+    *[dir="rtl"] .miniselectpicker, :root:lang(ar) .miniselectpicker, :root:lang(iw) .miniselectpicker {
+        background-position: left .7em top 50%, 0 0;
+        padding: .6em .8em .5em 1.4em;
+    }
+
+    .inputer {
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid #aaa;
+        border-radius: .5em;
+        width: 70px;
+    }
+
+    .btn1 {
+        appearance: none;
+        border: 0;
+        border-radius: 5px;
+        background: #fd5f00;
+        color: #fff;
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+
+    .selectpickerSort {
+        display: block;
+        font-size: 16px;
+        font-family: sans-serif;
+        color: #444;
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid #aaa;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+        border-radius: .5em;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background-color: #fff;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .65em auto, 100%;
+        width: 170px;
+        float: right;
+    }
+
+        .selectpickerSort::-ms-expand {
+            display: none;
+        }
+
+        /*.miniselectpicker:hover {
+            border-color: #888;
+        }
+*/
+        /*  .miniselectpicker:focus {
+            border-color: #aaa;
+            box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+            box-shadow: 0 0 0 3px;
+            color: #222;
+            outline: none;
+        }*/
+
+
+        .selectpickerSort option {
+            font-weight: normal;
+        }
+
+    .left-navigation {
+        height: 620px;
+        left: 15px;
+        width: 15%;
+        /* width: 300px;*/
+        position: fixed;
+        /* z-index: 1;
+        overflow-x: hidden;*/
+        /*padding-top: 20px;*/
+        /*background: #F17153;*/
+        background: linear-gradient(45deg, #ffde00, #fd5f00);
+        text-align: center;
+        /*(to top left, #ffde00, #fd5f00);*/
+        min-width: 300px;
+    }
+
+    .content {
+        left: 460px;
+        /*width: 920px;*/
+        width: 90%;
+        float: right;
+    }
+
+</style>
+
+
+
+<div class="container-fluid">
+   
+            <div class="left-navigation">
+                <form id="categori_mark" action="/Home/SearchResult" method="get" class="signin-form">
+                    <ul class="list">
+                        <li><h5><strong>Параметри</strong></h5></li>
+                        <li>
+                            Тип
+                            <select name="Category" onchange="categori_mark(this)" class="selectpicker" data-style="btn-info" id="Category_list" nama="Category_list">
+                                <option value="0">Будь-який</option>
+                                <option selected="selected" value="1">Легкові</option>
+                                <option value="2">Мото</option>
+                                <option value="6">Вантажівки</option>
+                                <option value="5">Причепи</option>
+                                <option value="4">Спецтехніка</option>
+                                <option value="10">Сільгосптехніка</option>
+                                <option value="7">Автобуси</option>
+                                <option value="3">Водний транспорт</option>
+                                <option value="9">Повітряний транспорт</option>
+                                <option value="8">Автобудинки</option>
+                            </select>
+                        </li>
+                        <li>
+                            Область
+                            <select name="Region" data-live-search="true" class="selectpicker" data-style="btn-info" id="Region">
+                                <option value="1">Вінницька</option>
+                                <option value="18">Волинська</option>
+                                <option value="11">Дніпропетровська</option>
+                                <option value="2">Житомирська</option>
+                                <option value="22">Закарпатська</option>
+                                <option value="13">Донецька</option>
+                                <option value="14">Запорізька</option>
+                                <option value="15">Івано-Франківська</option>
+                                <option value="10">Київська</option>
+                                <option value="16">Кіровоградська</option>
+                                <option value="17">Луганська</option>
+                                <option value="15">Львівська</option>
+                                <option value="19">Миколаївська</option>
+                                <option value="12">Одеська</option>
+                                <option value="20">Полтавська</option>
+                                <option value="21">Крим</option>
+                                <option value="9">Рівненська</option>
+                                <option value="8">Сумська</option>
+                                <option value="3">Тернопільська</option>
+                                <option value="8">Харківська</option>
+                                <option value="23">Херсонська</option>
+                                <option value="4">Хмельницька</option>
+                                <option value="24">Черкаська</option>
+                                <option value="6">Чернігівська</option>
+                                <option value="24">Чернівецька</option>
+
+                            </select>
+                        </li>
+                        <li>
+                            Марка
+                            <select name="Mark" onchange="categori_mark(this.value)" data-live-search="true" class="selectpicker" data-style="btn-info" id="Marcs">
+                                <option value="0" id="0">Будь яка</option>
+                                <optgroup label="Популярні">
+                                    <option value="6" class="item">Audi</option>
+                                    <option value="9" class="item">BMW</option>
+                                    <option value="13" class="item">Chevrolet</option>
+                                    <option value="18" class="item">Daewoo</option>
+                                    <option value="24" class="item">Ford</option>
+                                    <option value="28" class="item">Honda</option>
+                                    <option value="29" class="item">Hyundai</option>
+                                    <option value="33" class="item">Kia</option>
+                                    <option value="38" class="item">Lexus</option>
+                                    <option value="47" class="item">Mazda</option>
+                                    <option value="48" class="item">Mercedes-Benz</option>
+                                    <option value="52" class="item">Mitsubishi</option>
+                                    <option value="55" class="item">Nissan</option>
+                                    <option value="56" class="item">Opel</option>
+                                    <option value="58" class="item">Peugeot</option>
+                                    <option value="62" class="item">Renault</option>
+                                    <option value="70" class="item">Skoda</option>
+                                    <option value="79" class="item">Toyota</option>
+                                    <option value="84" class="item">Volkswagen</option>
+                                    <option value="88" class="item">ВАЗ</option>
+                                </optgroup>
+                                <optgroup label="Всі">
+                                    <option value="5166" class="item">Abarth</option>
+                                    <option value="98" class="item bold">Acura</option>
+                                    <option value="2396" class="item">Adler</option>
+                                    <option value="5165" class="item">Aero</option>
+                                    <option value="2" class="item">Aixam</option>
+                                    <option value="3" class="item bold">Alfa Romeo</option>
+                                    <option value="100" class="item">Alpine</option>
+                                    <option value="3988" class="item">Altamarea</option>
+                                    <option value="5821" class="item">AMC</option>
+                                    <option value="5769" class="item">Anaig</option>
+                                    <option value="5276" class="item">Armstrong Siddeley</option>
+                                    <option value="101" class="item">Aro</option>
+                                    <option value="4" class="item">Asia</option>
+                                    <option value="5793" class="item">AsiaStar</option>
+                                    <option value="5" class="item">Aston Martin</option>
+                                    <option value="6160" class="item">ATS Corsa</option>
+                                    <option value="6" class="item bold">Audi</option>
+                                    <option value="2077" class="item">Avia</option>
+                                    <option value="55051" class="item">BAIC</option>
+                                    <option value="5245" class="item">Baoya</option>
+                                    <option value="103" class="item">Barkas (Баркас)</option>
+                                    <option value="1540" class="item">Baw</option>
+                                    <option value="105" class="item">Beijing</option>
+                                    <option value="8" class="item">Bentley</option>
+                                    <option value="9" class="item bold">BMW</option>
+                                    <option value="99" class="item">BMW-Alpina</option>
+                                    <option value="6310" class="item">Bollinger</option>
+                                    <option value="5240" class="item">Borgward</option>
+                                    <option value="329" class="item">Brilliance</option>
+                                    <option value="10" class="item">Bristol</option>
+                                    <option value="110" class="item">Buick</option>
+                                    <option value="386" class="item">BYD</option>
+                                    <option value="11" class="item bold">Cadillac</option>
+                                    <option value="407" class="item">Chana</option>
+                                    <option value="1580" class="item">Changan</option>
+                                    <option value="1567" class="item">Changhe</option>
+                                    <option value="190" class="item bold">Chery</option>
+                                    <option value="13" class="item bold">Chevrolet</option>
+                                    <option value="14" class="item bold">Chrysler</option>
+                                    <option value="15" class="item bold">Citroen</option>
+                                    <option value="17" class="item bold">Dacia</option>
+                                    <option value="198" class="item">Dadi</option>
+                                    <option value="18" class="item bold">Daewoo</option>
+                                    <option value="115" class="item bold">DAF</option>
+                                    <option value="1441" class="item">DAF / VDL</option>
+                                    <option value="19" class="item bold">Daihatsu</option>
+                                    <option value="20" class="item">Daimler</option>
+                                    <option value="4328" class="item">Derways</option>
+                                    <option value="118" class="item bold">Dodge</option>
+                                    <option value="308" class="item">Dongfeng</option>
+                                    <option value="4495" class="item">DS</option>
+                                    <option value="120" class="item">Eagle</option>
+                                    <option value="3921" class="item">Estrima</option>
+                                    <option value="121" class="item bold">FAW</option>
+                                    <option value="22" class="item">Ferrari</option>
+                                    <option value="23" class="item bold">Fiat</option>
+                                    <option value="4459" class="item">Fiat-Abarth</option>
+                                    <option value="3444" class="item">Fisker</option>
+                                    <option value="24" class="item bold">Ford</option>
+                                    <option value="25" class="item">FSO</option>
+                                    <option value="197" class="item">FUQI</option>
+                                    <option value="185" class="item bold">Geely</option>
+                                    <option value="2604" class="item">Genesis</option>
+                                    <option value="123" class="item">GMC</option>
+                                    <option value="4316" class="item">Golf Car</option>
+                                    <option value="183" class="item">Gonow</option>
+                                    <option value="124" class="item bold">Great Wall</option>
+                                    <option value="1575" class="item">Groz</option>
+                                    <option value="191" class="item">Hafei</option>
+                                    <option value="1784" class="item">Hanomag</option>
+                                    <option value="5456" class="item">Haval</option>
+                                    <option value="28" class="item bold">Honda</option>
+                                    <option value="5572" class="item">Hong Xing</option>
+                                    <option value="2595" class="item">Huabei</option>
+                                    <option value="388" class="item">Huanghai</option>
+                                    <option value="127" class="item">Hummer</option>
+                                    <option value="29" class="item bold">Hyundai</option>
+                                    <option value="128" class="item bold">Infiniti</option>
+                                    <option value="3821" class="item">Iran Khodro</option>
+                                    <option value="30" class="item">Isuzu</option>
+                                    <option value="175" class="item bold">Iveco</option>
+                                    <option value="317" class="item">JAC</option>
+                                    <option value="31" class="item bold">Jaguar</option>
+                                    <option value="1590" class="item bold">JCB</option>
+                                    <option value="32" class="item bold">Jeep</option>
+                                    <option value="335" class="item">Jiangnan</option>
+                                    <option value="2231" class="item">Jinbei</option>
+                                    <option value="1574" class="item">Jonway</option>
+                                    <option value="412" class="item">Karosa</option>
+                                    <option value="33" class="item bold">Kia</option>
+                                    <option value="2676" class="item">King Long</option>
+                                    <option value="4606" class="item">KingWoo</option>
+                                    <option value="5553" class="item bold">Lada</option>
+                                    <option value="35" class="item">Lamborghini</option>
+                                    <option value="36" class="item">Lancia</option>
+                                    <option value="37" class="item bold">Land Rover</option>
+                                    <option value="406" class="item">Landwind</option>
+                                    <option value="134" class="item">LDV</option>
+                                    <option value="38" class="item bold">Lexus</option>
+                                    <option value="334" class="item bold">Lifan</option>
+                                    <option value="135" class="item bold">Lincoln</option>
+                                    <option value="41" class="item">Lotus</option>
+                                    <option value="177" class="item bold">MAN</option>
+                                    <option value="139" class="item">Maruti</option>
+                                    <option value="45" class="item">Maserati</option>
+                                    <option value="46" class="item">Maybach</option>
+                                    <option value="47" class="item bold">Mazda</option>
+                                    <option value="3101" class="item">McLaren</option>
+                                    <option value="1904" class="item">MEGA</option>
+                                    <option value="48" class="item bold">Mercedes-Benz</option>
+                                    <option value="144" class="item">Mercury</option>
+                                    <option value="49" class="item">MG</option>
+                                    <option value="147" class="item bold">MINI</option>
+                                    <option value="52" class="item bold">Mitsubishi</option>
+                                    <option value="4069" class="item">Mobility Ventures</option>
+                                    <option value="5039" class="item">MPM Motors</option>
+                                    <option value="5138" class="item">MYBRO</option>
+                                    <option value="55" class="item bold">Nissan</option>
+                                    <option value="2045" class="item">Nysa (Ниса)</option>
+                                    <option value="148" class="item">Oldsmobile</option>
+                                    <option value="56" class="item bold">Opel</option>
+                                    <option value="2974" class="item">ORA</option>
+                                    <option value="3193" class="item">Packard</option>
+                                    <option value="346" class="item">Peterbilt</option>
+                                    <option value="58" class="item bold">Peugeot</option>
+                                    <option value="181" class="item">Plymouth</option>
+                                    <option value="149" class="item">Pontiac</option>
+                                    <option value="59" class="item bold">Porsche</option>
+                                    <option value="60" class="item">Proton</option>
+                                    <option value="1332" class="item">Quicksilver</option>
+                                    <option value="4369" class="item">Ram</option>
+                                    <option value="4681" class="item">Ravon</option>
+                                    <option value="62" class="item bold">Renault</option>
+                                    <option value="4698" class="item">Renault Samsung Motors</option>
+                                    <option value="63" class="item">Rolls-Royce</option>
+                                    <option value="64" class="item bold">Rover</option>
+                                    <option value="65" class="item">Saab</option>
+                                    <option value="192" class="item">Samand</option>
+                                    <option value="3972" class="item">Samson</option>
+                                    <option value="325" class="item">Samsung</option>
+                                    <option value="331" class="item">Saturn</option>
+                                    <option value="3268" class="item">Scion</option>
+                                    <option value="67" class="item bold">SEAT</option>
+                                    <option value="3100" class="item">Shelby</option>
+                                    <option value="195" class="item">Shuanghuan</option>
+                                    <option value="70" class="item bold">Skoda</option>
+                                    <option value="311" class="item">SMA</option>
+                                    <option value="71" class="item bold">Smart</option>
+                                    <option value="194" class="item">SouEast</option>
+                                    <option value="73" class="item bold">SsangYong</option>
+                                    <option value="214" class="item">Star</option>
+                                    <option value="75" class="item bold">Subaru</option>
+                                    <option value="2879" class="item">Suda</option>
+                                    <option value="76" class="item bold">Suzuki</option>
+                                    <option value="2497" class="item">Tarpan Honker</option>
+                                    <option value="78" class="item">TATA</option>
+                                    <option value="204" class="item">Tatra</option>
+                                    <option value="3922" class="item">Tazzari</option>
+                                    <option value="2233" class="item bold">Tesla</option>
+                                    <option value="2050" class="item">Tiger</option>
+                                    <option value="79" class="item bold">Toyota</option>
+                                    <option value="345" class="item">Trabant</option>
+                                    <option value="80" class="item">Triumph</option>
+                                    <option value="206" class="item">Van Hool</option>
+                                    <option value="82" class="item">Vauxhall</option>
+                                    <option value="184" class="item">Venucia</option>
+                                    <option value="84" class="item bold">Volkswagen</option>
+                                    <option value="85" class="item bold">Volvo</option>
+                                    <option value="2021" class="item">Wanderer</option>
+                                    <option value="2403" class="item">Wanfeng</option>
+                                    <option value="339" class="item">Wartburg</option>
+                                    <option value="1820" class="item">Willys</option>
+                                    <option value="2653" class="item">Wuling</option>
+                                    <option value="338" class="item">Xin kai</option>
+                                    <option value="87" class="item">Yugo</option>
+                                    <option value="3610" class="item">Zotye</option>
+                                    <option value="3089" class="item">Zuk</option>
+                                    <option value="322" class="item">ZX</option>
+                                    <option value="188" class="item bold">Богдан</option>
+                                    <option value="88" class="item bold">ВАЗ</option>
+                                    <option value="90" class="item">ВИС</option>
+                                    <option value="91" class="item bold">ГАЗ</option>
+                                    <option value="410" class="item">ГолАЗ</option>
+                                    <option value="170" class="item">ЄРАЗ</option>
+                                    <option value="89" class="item bold">ЗАЗ</option>
+                                    <option value="168" class="item bold">ЗИЛ</option>
+                                    <option value="1544" class="item">ЗИМ</option>
+                                    <option value="92" class="item bold">ИЖ</option>
+                                    <option value="189" class="item bold">ЛуАЗ</option>
+                                    <option value="94" class="item bold">Москвич/АЗЛК</option>
+                                    <option value="154" class="item">Причеп</option>
+                                    <option value="327" class="item">РАФ</option>
+                                    <option value="199" class="item">Ретро автомобілі</option>
+                                    <option value="2863" class="item bold">Саморобний</option>
+                                    <option value="96" class="item">СеАЗ</option>
+                                    <option value="2491" class="item">СМЗ</option>
+                                    <option value="4038" class="item">Тренер</option>
+                                    <option value="93" class="item bold">УАЗ</option>
+                                </optgroup>
+                            </select>
+                        </li>
+                        <li>
+                            Модель
+                            <select class="selectpicker" data-live-search="true" data-style="btn-info" name="Model" id="Models">
+                                <option value="0" id="0">Будь яка</option>
+                            </select>
+                        </li>
+                        <li>
+                            Рік
+                            <select id="YearFrom" name="YearFrom" data-placeholder="від" class="miniselectpicker" data-style="btn-info" data-live-search="true"><option value="0"><!---->від</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option><option value="1949">1949</option><option value="1948">1948</option><option value="1947">1947</option><option value="1946">1946</option><option value="1945">1945</option><option value="1944">1944</option><option value="1943">1943</option><option value="1942">1942</option><option value="1941">1941</option><option value="1940">1940</option><option value="1939">1939</option><option value="1938">1938</option><option value="1937">1937</option><option value="1936">1936</option><option value="1935">1935</option><option value="1934">1934</option><option value="1933">1933</option><option value="1932">1932</option><option value="1931">1931</option><option value="1930">1930</option><option value="1929">1929</option><option value="1928">1928</option><option value="1927">1927</option><option value="1926">1926</option><option value="1925">1925</option><option value="1924">1924</option><option value="1923">1923</option><option value="1922">1922</option><option value="1921">1921</option><option value="1920">1920</option><option value="1919">1919</option><option value="1918">1918</option><option value="1917">1917</option><option value="1916">1916</option><option value="1915">1915</option><option value="1914">1914</option><option value="1913">1913</option><option value="1912">1912</option><option value="1911">1911</option><option value="1910">1910</option><option value="1909">1909</option><option value="1908">1908</option><option value="1907">1907</option><option value="1906">1906</option><option value="1905">1905</option><option value="1904">1904</option><option value="1903">1903</option><option value="1902">1902</option><option value="1901">1901</option><option value="1900">1900</option></select>
+                            <select id="YearTo" name="YearTo" data-placeholder="до" class="miniselectpicker" data-style="btn-info" data-live-search="true"><option value="0"><!---->до</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option><option value="1949">1949</option><option value="1948">1948</option><option value="1947">1947</option><option value="1946">1946</option><option value="1945">1945</option><option value="1944">1944</option><option value="1943">1943</option><option value="1942">1942</option><option value="1941">1941</option><option value="1940">1940</option><option value="1939">1939</option><option value="1938">1938</option><option value="1937">1937</option><option value="1936">1936</option><option value="1935">1935</option><option value="1934">1934</option><option value="1933">1933</option><option value="1932">1932</option><option value="1931">1931</option><option value="1930">1930</option><option value="1929">1929</option><option value="1928">1928</option><option value="1927">1927</option><option value="1926">1926</option><option value="1925">1925</option><option value="1924">1924</option><option value="1923">1923</option><option value="1922">1922</option><option value="1921">1921</option><option value="1920">1920</option><option value="1919">1919</option><option value="1918">1918</option><option value="1917">1917</option><option value="1916">1916</option><option value="1915">1915</option><option value="1914">1914</option><option value="1913">1913</option><option value="1912">1912</option><option value="1911">1911</option><option value="1910">1910</option><option value="1909">1909</option><option value="1908">1908</option><option value="1907">1907</option><option value="1906">1906</option><option value="1905">1905</option><option value="1904">1904</option><option value="1903">1903</option><option value="1902">1902</option><option value="1901">1901</option><option value="1900">1900</option></select>
+
+                        </li>
+                        <li>
+                            Ціна$
+                            <input class="inputer" type="number" name="PriceFrom" id="PriceFrom" placeholder="від">
+
+                            <input class="inputer" type="number" name="PriceTo" id="PriceTo" placeholder="до">
+                        </li>
+                        <li>
+                            Двигун
+                            <input class="inputer" type="number" name="VoluemEngineFrom" placeholder="від">
+
+                            <input class="inputer" type="number" name="VoluemEngineTo" placeholder="до">
+                        </li>
+                        <li>
+                            Коробка
+                            <select class="selectpicker" id="GearBox" name="GearBox">
+                                <option value="" id="0">Буль яка</option>
+                                <option value="1" id="1">Механічна</option>
+                                <option value="2" id="2">Автомат</option>
+                                <option value="3" id="2">Типтроник</option>
+                                <option value="4" id="2">Адаптивная</option>
+                                <option value="5" id="2">Вариатор</option>
+                            </select>
+                            <br />
+                        </li>
+                        <li><button class="btn1">Пошук</button></li>
+                    </ul>
+                </form>
+            </div>
+       
+
+    <div class="content">
+        <select class="selectpickerSort" onchange="sort_cars(this.value)">
+            <option value="0" id="0">сортування</option>
+            <option value="increase" id="1">спочатку дешевші</option>
+            <option value="decrease" id="2">спочатку дорожчі</option>
+
+
+        </select>
+        <div id="rows" class="rows">
+
+
+            @foreach (var item in ViewBag.Cars11)
+            {
+
+
+                <div data-price="@item.PriceUAH" id="row" class="row">
+
+                    <div class="div_img">
+                        <a href="@item.LinkForCarPage">
+                            <img class="card-img" src="@item.Img" alt="Card img" />
+                        </a>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="@item.LinkForCarPage"><H4 href="@item.LinkForCarPage" class="address">@item.MarkName @item.ModelName @item.CarYear </H4></a>
+                        <h4 class="card-title">@item.PriceUSD $</h4>
+                        <div class="content_left">
+                            <p class="card-text">@item.PriceUAH UAH</p>
+                            <p class="card-text">GearBox- @item.GearBoxType</p>
+                            <p class="card-text">Year- @item.CarYear</p>
+                        </div>
+                        <div class="content_right">
+                            <p class="card-text">Odometer- @item.Odometer</p>
+                            <p class="card-text">Engine- @item.Engine</p>
+                            <p class="card-text">Location- @item.CarLocation</p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        function sort_cars(value) {
+
+            debugger;
+            let a = rows.children.length;
+
+            if (value == 'increase') {
+                let rows = document.querySelector('#rows');
+                for (let i = 0; i < rows.children.length; i++) {
+                    for (let j = i + 1; j < rows.children.length; j++) {
+                        if (+rows.children[i].getAttribute('data-price') > +rows.children[j].getAttribute('data-price')) {
+                            replaceNode = rows.replaceChild(rows.children[j], rows.children[i]);
+                            insertAfter(replaceNode, rows.children[i]);
+                        }
+                    }
+                }
+            }
+            if (value == 'decrease') {
+                let rows = document.querySelector('#rows');
+                for (let i = 0; i < rows.children.length; i++) {
+                    for (let j = i + 1; j < rows.children.length; j++) {
+                        if (+rows.children[i].getAttribute('data-price') < +rows.children[j].getAttribute('data-price')) {
+                            replaceNode = rows.replaceChild(rows.children[j], rows.children[i]);
+                            insertAfter(replaceNode, rows.children[i]);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        function insertAfter(elem, refElem) {
+            return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+        }
+
+
+        function categori_mark(value) {
+
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+
+                url: 'https://developers.ria.com/auto/categories/1/marks/' + value + '/models?api_key=TVjrh8VNnQKxVtqS4x4gen7trbUIh87gqyKaW1Ka',
+
+                dataType: "json",
+                success: function (response) {
+
+                    //$('#Models').val('newValue');
+                    listModelsFill(response);
+
+                },
+                failure: function (response) {
+                    $('#Models').append('<tr><td>Error</td></tr>')
+                }
+            })
+
+        }
+
+
+        function listModelsFill(response) {
+
+
+            var str = '';
+            var strli = '';
+            for (var i = 0; i < response.length; i++) {
+
+                const json1 = JSON.stringify(response[i]);
+                const parsedJson = JSON.parse(json1);
+                const name = parsedJson.name;
+                const value = parsedJson.value;
+                str += '<option value="' + value + '">' + name + '</option>'
+                var j = i + 1;
+
+                strli += '<li data-original-index="' + i + '"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">' + name + '</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>'
+
+            }
+            debugger;
+            var my_list = document.getElementById("Models");
+            my_list.innerHTML = str;
+
+            //var str2 = '<select  data-live-search="true" class="selectpicker" data-style="btn-info" id="Models" tabindex="-98">' + str + '</select >';
+            //var serchul = document.getElementsByClassName('dropdown-menu inner');
+            //serchul.innerHTML = strli;
+
+            //my_list.insertAdjacentHTML('beforebegin', '<div class="dropdown-menu open" style="max-height: 293px; overflow: hidden; min-height: 42px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);" x-placement="bottom-start"><div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off"></div><ul class="dropdown-menu inner" role="menu" style="max-height: 239px; overflow-y: auto; min-height: 0px;">'+strli+'</ul></div>');
+
+
+            //var attribute = element.getAttribute("dropdown-menu inner");
+            //attribute.
+
+            //$('#Models_input').InnerHTML = str;
+            //var model = JSON.parse(json);
+            //var model = jQuery.parseJSON(response[0])
+            //alert(model.name);
+            //'<option value="' + month[i] + '"> name <option />'
+        }
+
+
+    </script>
+
+}
